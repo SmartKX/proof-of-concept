@@ -29,77 +29,92 @@
     <div class="row">
       <h3>Welcome to SmartKX!</h3>
     </div>
-    <div class="row">
-      <div class="col-6">
-        <div class="form-group row">
-          <label for="account1" class="col-sm-3 col-form-label col-form-label-lg">Account 1</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control form-control-lg" id="account1" value="465,123">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true">Form</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="receipts-tab" data-toggle="tab" href="#receipts" role="tab" aria-controls="receipts" aria-selected="false">Receipts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="code-tab" data-toggle="tab" href="#code" role="tab" aria-controls="code" aria-selected="false">Code</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group row">
+            <label for="account1" class="col-sm-3 col-form-label col-form-label-lg">Account 1</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control form-control-lg" id="account1" value="465,123">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="account2" class="col-sm-3 col-form-label col-form-label-lg">Account 2</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control form-control-lg" id="account2" value="232,231">
+          <div class="form-group row">
+            <label for="account2" class="col-sm-3 col-form-label col-form-label-lg">Account 2</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control form-control-lg" id="account2" value="232,231">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="account3" class="col-sm-3 col-form-label col-form-label-lg">Account 3</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control form-control-lg" id="account3" value="847,232">
+          <div class="form-group row">
+            <label for="account3" class="col-sm-3 col-form-label col-form-label-lg">Account 3</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control form-control-lg" id="account3" value="847,232">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="account4" class="col-sm-3 col-form-label col-form-label-lg">Account 4</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control form-control-lg" id="account4" value="1,233,653">
+          <div class="form-group row">
+            <label for="account4" class="col-sm-3 col-form-label col-form-label-lg">Account 4</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control form-control-lg" id="account4" value="1,233,653">
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label for="account5" class="col-sm-3 col-form-label col-form-label-lg">Account 5</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control form-control-lg" id="account5" value="846,821">
+          <div class="form-group row">
+            <label for="account5" class="col-sm-3 col-form-label col-form-label-lg">Account 5</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control form-control-lg" id="account5" value="846,821">
+            </div>
           </div>
+          <button type="button" class="btn btn-primary" id="go">Submit</button>
+          <button type="button" class="btn btn-tertiary" id="import">Import</button>
+          <input type="file" value="" id="file">
         </div>
-        <button type="button" class="btn btn-primary" id="go">Submit</button>
-        <button type="button" class="btn btn-tertiary" id="import">Import</button>
-        <input type="file" value="" id="file">
-      </div>
-      <div class="col">
-        <table class="table table-dark">
-          <tr>
-            <th>Range</th>
-            <th>Rate</th>
-            <th>Amount</th>
-            <th>Result</th>
-          </tr>
-          <tr id="rate0">
-            <td>&lt; 1MM</td>
-            <td>.01</td>
-            <td class="amount"></td>
-            <td class="result"></td>
-          </tr>
-          <tr id="rate1">
-            <td>1MM - 3MM</td>
-            <td>.008</td>
-            <td class="amount"></td>
-            <td class="result"></td>
-          </tr>
-          <tr id="rate2">
-            <td>&gt; 3MM</td>
-            <td>.006</td>
-            <td class="amount"></td>
-            <td class="result"></td>
-          </tr>
-        </table>
-        <br>
-        <h2>Total: <span id="total"></span></h2>
-        <h2>Total Billed: <span id="totalBilled"></span></h2>
-        <img src="img/gear.gif" id="gear" style="display:none; position:absolute; top: 0; right: 30px;">
-        </h2>
+        <div class="col">
+          <table class="table table-dark">
+            <tr>
+              <th>Range</th>
+              <th>Rate</th>
+              <th>Amount</th>
+              <th>Result</th>
+            </tr>
+            <tr id="rate0">
+              <td>&lt; 1MM</td>
+              <td>.01</td>
+              <td class="amount"></td>
+              <td class="result"></td>
+            </tr>
+            <tr id="rate1">
+              <td>1MM - 3MM</td>
+              <td>.008</td>
+              <td class="amount"></td>
+              <td class="result"></td>
+            </tr>
+            <tr id="rate2">
+              <td>&gt; 3MM</td>
+              <td>.006</td>
+              <td class="amount"></td>
+              <td class="result"></td>
+            </tr>
+          </table>
+          <br>
+          <h2>Total: <span id="total"></span></h2>
+          <h2>Total Billed: <span id="totalBilled"></span></h2>
+          <img src="img/gear.gif" id="gear" style="display:none; position:absolute; top: 0; right: 30px;">
+          </h2>
+        </div>
       </div>
     </div>
-    <br>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
   </div>
   <script src="js/vendor/modernizr-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
