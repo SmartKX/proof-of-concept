@@ -1,0 +1,201 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>SmartKX</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/loading.css">
+  </head>
+  <body>
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="container-fluid">
+      <br>
+      <div class="row">
+        <div class="col">
+          <h3>SmartKX</h3>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col-sm-auto">
+          <select class="form-control form-control-lg">
+            <option>Household</option>
+            <option>John Smith Family (...010)</option>
+            <option>Mary Williams Family (...736)</option>
+            <option>Greg Andrews Family (...893)</option>
+          </select>
+        </div>
+        <div class="col-sm-auto">
+          <select class="form-control form-control-lg">
+            <option value="">Year</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <select class="form-control form-control-lg">
+            <option>Quarter</option>
+            <option value="1">Q1</option>
+            <option value="2">Q2</option>
+            <option value="3">Q3</option>
+            <option value="4">Q4</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row mb-3">
+        <div class="col">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Form</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Receipts</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group row">
+                    <label for="account1" class="col-sm-3 col-form-label col-form-label-lg">B IRA (...821)</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control form-control-lg" id="account1" value="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="account2" class="col-sm-3 col-form-label col-form-label-lg">S IRA (...152)</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control form-control-lg" id="account2" value="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="account3" class="col-sm-3 col-form-label col-form-label-lg">B & S (...473)</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control form-control-lg" id="account3" value="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="account4" class="col-sm-3 col-form-label col-form-label-lg">B Taxable</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control form-control-lg" id="account4" value="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="account5" class="col-sm-3 col-form-label col-form-label-lg">S Taxable</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control form-control-lg" id="account5" value="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="account5" class="col-sm-3 col-form-label col-form-label-lg">Kid Account</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control form-control-lg" id="account5" value="">
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-primary" id="go">Submit</button>
+                  <button type="button" class="btn btn-tertiary" id="import">Import</button>
+                  <input type="file" value="" id="file">
+                </div>
+                <div class="col">
+                  <table class="table table-dark">
+                    <tr>
+                      <th>Range</th>
+                      <th>Rate</th>
+                      <th>Amount</th>
+                      <th>Result</th>
+                    </tr>
+                    <tr id="rate0">
+                      <td>&lt; 1MM</td>
+                      <td>.01</td>
+                      <td class="amount"></td>
+                      <td class="result"></td>
+                    </tr>
+                    <tr id="rate1">
+                      <td>1MM - 3MM</td>
+                      <td>.008</td>
+                      <td class="amount"></td>
+                      <td class="result"></td>
+                    </tr>
+                    <tr id="rate2">
+                      <td>&gt; 3MM</td>
+                      <td>.006</td>
+                      <td class="amount"></td>
+                      <td class="result"></td>
+                    </tr>
+                  </table>
+                  <br>
+                  <h2>Total: <span id="total"></span></h2>
+                  <h2>Total Billed: <span id="totalBilled"></span></h2>
+                  <img src="img/gear.gif" id="gear" style="display:none; position:absolute; top: 0; right: 30px;">
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Date & Time</th>
+                    <th scope="col">Calculation Hash</th>
+                    <th scope="col">Total Billed</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">April 1, 2018 // 11:43</th>
+                    <td>d3a55c199ecad282a8</td>
+                    <td>$55,750.36</td>
+                    <td>$3,625,060</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">April 1, 2018 // 15:13</th>
+                    <td>99ecad282a8d3a55c1</td>
+                    <td>$53,153.476</td>
+                    <td>$3,192,246</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">April 1, 2018 // 16:50</th>
+                    <td>a55c199ecad282a8d3</td>
+                    <td>$60,120.16</td>
+                    <td>$4,353,360</td>
+                  </tr>
+                </tbody>
+              </table>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+    <script src="js/plugins.js"></script>
+    <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js" charset="utf-8" type="text/javascript"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
