@@ -26,13 +26,6 @@ var abi = [{"constant":true,"inputs":[],"name":"eMap","outputs":[{"name":"","typ
 let contract = web3.eth.contract(abi);
 let skx = contract.at(address);
 
-skx.getAccountValue(2018,1,0,function(error, result){
-   if(!error)
-       console.log(JSON.stringify(result));
-   else
-       console.error(error);
-})
-
 $('.skx-account-value').each(function(i,o) {
   skx.getAccountValue(2018,1,i, (e,v) => $(o).val(v))
 });
