@@ -3,9 +3,9 @@ window.addEventListener('load', async () => {
     window.web3 = new Web3(ethereum);
     try {
       await ethereum.enable();
-      console.log('YESSSSS');
+      console.log('Connection Established');
     } catch (error) {
-      console.log('NOOOOOO');
+      console.log('Connection Not Established');
     }
 	}
 
@@ -25,3 +25,10 @@ var abi = [{"constant":true,"inputs":[],"name":"eMap","outputs":[{"name":"","typ
 
 let contract = web3.eth.contract(abi);
 let skx = contract.at(address);
+
+skx.getAccountValue(2018,1,0,function(error, result){
+   if(!error)
+       console.log(JSON.stringify(result));
+   else
+       console.error(error);
+})
