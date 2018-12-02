@@ -34,5 +34,5 @@ skx.getAccountValue(2018,1,0,function(error, result){
 })
 
 $('.skx-account-value').each(function(i,o) {
-  skx.getAccountValue(2018,1,i, (e,v) => o.val(v);
-})
+  skx.getAccountValue(2018,1,i, (e,v) => $(o).val(v))
+});
