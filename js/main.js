@@ -32,3 +32,7 @@ skx.getAccountValue(2018,1,0,function(error, result){
    else
        console.error(error);
 })
+
+$('.skx-account-value').each(function(i,o) {
+  skx.getAccountValue(2018,1,i, (e,v) => o.val(v);
+})
