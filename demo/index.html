@@ -70,9 +70,8 @@
               <div class="row">
                 <div class="col-6">
                   <option v-for="account in accounts" :value="account.id"></option>
-
                   <div v-for="(account, index) in accounts" class="form-group row">
-                    <label :for="account{{index}}" class="col-sm-2 col-form-label col-form-label-lg">{{account.name}}</label>
+                    <label :for="account1" class="col-sm-2 col-form-label col-form-label-lg">B IRA</label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control form-control-lg skx-account-value" id="account1" value="">
                     </div>
@@ -80,10 +79,6 @@
                       <button type="button" class="btn btn-primary" onClick="skx.setAccountValue(2018,1,0,$('#account1').val(),(a,b)=>console.log(a,b));">Set</button>
                     </div>
                   </div>
-
-
-
-
                   <div class="form-group row">
                     <label for="account2" class="col-sm-2 col-form-label col-form-label-lg">S IRA</label>
                     <div class="col-sm-9">

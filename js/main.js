@@ -48,36 +48,4 @@ var selector = new Vue({
       }      
     ]
   }
-})
-
-var accounts = new Vue({
-  el: '#accounts',
-  data: {
-    accounts: [
-      {
-        name: 'B IRA',
-        num: 0
-      },
-      {
-        name: 'S IRA',
-        num: 1
-      },
-      {
-        name: 'B & S',
-        num: 2
-      },
-      {
-        name: 'B Taxable',
-        num: 3
-      },
-      {
-        name: 'S Taxable',
-        num: 4
-      },
-      {
-        name: 'Kid Account',
-        num: 5
-      }
-    ]
-  }
-})
+});
