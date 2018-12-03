@@ -51,5 +51,3 @@ var selector = new Vue({
     ]
   }
 });
-
-$().
