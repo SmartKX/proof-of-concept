@@ -27,7 +27,7 @@
         <div class="col-sm-auto">
           <select class="form-control form-control-lg">
             <option>Household</option>
-            <household-item></household-item>
+            <option v-for="household in households" :value="household.contractHash">{{ household.name }}</li>
           </select>
         </div>
         <div class="col-sm-auto">

@@ -49,8 +49,3 @@ var app = new Vue({
     ]
   }
 })
-
-Vue.component('household-item', {
-  props: ['households'],
-  template: '<option v-for="household in households" :value="household.contractHash">{{ household.name }}</li>'
-});
