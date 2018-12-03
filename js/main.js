@@ -51,7 +51,7 @@ var selector = new Vue({
 })
 
 var accounts = new Vue({
-  el: '#selector',
+  el: '#accounts',
   data: {
     accounts: [
       {
