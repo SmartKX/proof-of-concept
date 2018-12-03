@@ -30,22 +30,31 @@ $('.skx-account-value').each(function(i,o) {
   skx.getAccountValue(2018,1,i, (e,v) => $(o).val(v))
 });
 
+Vue.component('household', {
+  props: ['household'],
+  template: '<option v-for="household in households" :value="household.contractHash">{{ household.name }}</li>'
+})
+
 var app = new Vue({
   el: '#selector',
   data: {
     households: [
       {
+        id: 0,
         name: 'John Smith Family (...010)',
         contractHash: '0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D26D0'
       },
       {
+        id: 1,
         name: 'Mary Williams Family (...736)',
         contractHash: '0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D26D0'
       },
       {
+        id: 2,
         name: 'Greg Andrews Family (...893)',
         contractHash: '0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D26D0'
       }      
     ]
   }
 })
+
