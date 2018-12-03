@@ -26,7 +26,7 @@ var abi = [{"constant":true,"inputs":[],"name":"eMap","outputs":[{"name":"","typ
 let contract = web3.eth.contract(abi);
 let skx = contract.at(address);
 
-let escan = "http://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D26D0&startblock=0&endblock=99999999&sort=asc&apikey=E2Z51ZDBPTNM2XXX4MXZIDUZHVWY5MQVY6";
+let escan = "https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D26D0&startblock=0&endblock=99999999&sort=asc&apikey=E2Z51ZDBPTNM2XXX4MXZIDUZHVWY5MQVY6";
 
 $('.skx-account-value').each(function(i,o) {
   skx.getAccountValue(2018,1,i, (e,v) => $(o).val(v))
@@ -52,6 +52,4 @@ var selector = new Vue({
   }
 });
 
-$.getJSON(escan, (d) => {
-  console.log(d);
-})
+$().
