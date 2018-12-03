@@ -49,5 +49,3 @@ var app = new Vue({
     ]
   }
 })
-
-http://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D26D0&startblock=0&endblock=99999999&sort=asc&apikey=E2Z51ZDBPTNM2XXX4MXZIDUZHVWY5MQVY6
