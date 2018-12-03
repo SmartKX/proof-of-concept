@@ -55,7 +55,7 @@
         <div class="col">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" id="current-tab" data-toggle="tab" href="#current" role="tab" aria-controls="form" aria-selected="true">Current Contract</a>
+              <a class="nav-link active" id="current-tab" data-toggle="tab" href="#current" role="tab" aria-controls="current" aria-selected="true">Current Contract</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="receipts-tab" data-toggle="tab" href="#receipts" role="tab" aria-controls="receipts" aria-selected="false">Receipts</a>
@@ -69,7 +69,7 @@
       <div class="row">
         <div class="col">
           <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="home-tab">
+            <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="current-tab">
               <div class="row">
                 <div class="col-6">
                   <option v-for="account in accounts" :value="account.id"></option>
@@ -196,10 +196,11 @@
                 </tbody>
               </table>              
             </div>
-            <div class="tab-pane fade" id="previous" role="tabpanel" aria-labelledby="previous-tab">
+            <div class="tab-pane fade" id="prior" role="tabpanel" aria-labelledby="prior-tab">
               <ul>
                 <li><a href="#">October 2017 - April 2018</a></li>
                 <li><a href="#">April 2018 - June 2018</a></li>
+              </ul>
             </div>
           </div>
         </div>
