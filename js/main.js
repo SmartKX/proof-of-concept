@@ -31,8 +31,8 @@ $('.skx-account-value').each(function(i,o) {
 });
 
 Vue.component('household', {
-  props: ['household'],
-  template: '<option v-for="household in households" :value="household.contractHash">{{ household.name }}</li>'
+  props: ['households'],
+  template: '<option :value="household.contractHash">{{ household.name }}</li>'
 })
 
 var app = new Vue({
