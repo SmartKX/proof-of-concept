@@ -71,6 +71,8 @@ function maths() {
     }
   );
 
+  console.log('----' + total);
+
   // gear on
   $('#gear').show();
 
