@@ -65,6 +65,8 @@ function maths() {
   let totalBilled = 0;
   // collect
   $('input[type=text].skx-account-value').val(
+    console.log(a)
+    console.log(b)
     function(a, b) {
       total += parseInt(b.replace(/,/g, ''));
       return b;
