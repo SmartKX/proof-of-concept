@@ -144,7 +144,7 @@
                 </div>
                 <div class="col-6">
                   <h3>Current Fee Schedule</h3>
-                  <table class="table table-dark">
+                  <table class="table table">
                     <tr>
                       <th>Range</th>
                       <th>Rate</th>
@@ -164,8 +164,14 @@
                       <td class="result"></td>
                     </tr>
                     <tr id="rate2">
-                      <td>&gt; 3MM</td>
+                      <td>3MM - 5MM</td>
                       <td>.006</td>
+                      <td class="amount"></td>
+                      <td class="result"></td>
+                    </tr>
+                    <tr id="rate2">
+                      <td>5MM &gt;</td>
+                      <td>.004</td>
                       <td class="amount"></td>
                       <td class="result"></td>
                     </tr>
@@ -174,7 +180,8 @@
                   <h2>Total: <span id="total"></span></h2>
                   <h2>Total Billed: <span id="totalBilled"></span></h2>
                   <button id="calc" type="button" class="btn-lg btn-primary">Calculate</button>
-                  <p><a href="https://rinkeby.etherscan.io/tx/0xeb67cfc52a53bf620f580a2e5af913b9ca7f5c8d790be3d8b43c9714f563a560">Contract</a>
+                  <hr>
+                  <p><a href="https://kovan.etherscan.io/tx/0xacf9e7bf8d79f5e8699155b227575c3e9fafe3919b8f2ddc5df1944ccf2a7553">Contract</a></p>
                   <img src="/img/gear.gif" id="gear" style="display:none; position:absolute; top: 0; right: 30px;">
                   </h2>
                 </div>
@@ -237,7 +244,7 @@
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-4 col-form-label-sm">Account Name</label>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="">
+                  <input type="text" class="form-control form-control-sm" id="acctName1" placeholder="">
                 </div>
                 <label for="inputPassword3" class="col-sm-2 col-form-label-sm">Rate</label>
                 <div class="col-sm-2">
@@ -247,7 +254,7 @@
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-4 col-form-label-sm">Account Name</label>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="">
+                  <input type="text" class="form-control form-control-sm" id="acctName2" placeholder="">
                 </div>
                 <label for="inputPassword3" class="col-sm-2 col-form-label-sm">Rate</label>
                 <div class="col-sm-2">
@@ -257,7 +264,7 @@
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-4 col-form-label-sm">Account Name</label>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="">
+                  <input type="text" class="form-control form-control-sm" id="acctName3" placeholder="">
                 </div>
                 <label for="inputPassword3" class="col-sm-2 col-form-label-sm">Rate</label>
                 <div class="col-sm-2">
@@ -267,7 +274,7 @@
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-4 col-form-label-sm">Account Name</label>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="">
+                  <input type="text" class="form-control form-control-sm" id="acctName4" placeholder="">
                 </div>
                 <label for="inputPassword3" class="col-sm-2 col-form-label-sm">Rate</label>
                 <div class="col-sm-2">
@@ -277,7 +284,7 @@
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-4 col-form-label-sm">Account Name</label>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="">
+                  <input type="text" class="form-control form-control-sm" id="acctName5" placeholder="">
                 </div>
                 <label for="inputPassword3" class="col-sm-2 col-form-label-sm">Rate</label>
                 <div class="col-sm-2">
@@ -287,7 +294,7 @@
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-4 col-form-label-sm">Account Name</label>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="">
+                  <input type="text" class="form-control form-control-sm" id="acctName6" placeholder="">
                 </div>
                 <label for="inputPassword3" class="col-sm-2 col-form-label-sm">Rate</label>
                 <div class="col-sm-2">
@@ -297,7 +304,7 @@
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-4 col-form-label-sm">Account Name</label>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="">
+                  <input type="text" class="form-control form-control-sm" id="acctName7" placeholder="">
                 </div>
                 <label for="inputPassword3" class="col-sm-2 col-form-label-sm">Rate</label>
                 <div class="col-sm-2">
@@ -307,18 +314,24 @@
               <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-4 col-form-label-sm">Account Name</label>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control form-control-sm" id="inputEmail3" placeholder="">
+                  <input type="text" class="form-control form-control-sm" id="acctName8" placeholder="">
                 </div>
                 <label for="inputPassword3" class="col-sm-2 col-form-label-sm">Rate</label>
                 <div class="col-sm-2">
                   <input type="text" class="form-control form-control-sm" id="inputPassword3" placeholder="">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-4 col-form-label-sm">Contract PDF</label>
+                <div class="col-sm-8">
+                  <button type="button" class="btn btn-light">Upload</button>
                 </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Deploy Contract</button>
           </div>
         </div>
       </div>
