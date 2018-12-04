@@ -69,6 +69,7 @@ function maths() {
       console.log(a);
       console.log(b);
       total += parseInt(b.replace(/,/g, ''));
+      console.log(total);
       return b;
     }
   );
