@@ -29,7 +29,7 @@ let skx = contract.at(address);
 $('.skx-account-value').each(function(i,o) {
   console.log('i = ' + i);
 
-  skx.getAccountValue(2018,1,i, (e,v) => $(o).val(v))
+  skx.getAccountValue(2018,4,i, (e,v) => $(o).val(v))
 });
 
 var selector = new Vue({
