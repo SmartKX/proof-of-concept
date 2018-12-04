@@ -66,8 +66,9 @@ function maths() {
   // collect
   $('input[type=text].skx-account-value').val(
     function(a, b) {
-      total += b;
+      total += parseInt(b);
       console.log(total);
+      return 
     }
   );
 
