@@ -27,8 +27,8 @@ let contract = web3.eth.contract(abi);
 let skx = contract.at(address);
 
 $('.skx-account-value').each(function(i,o) {
-  conole.log('i = ' + i);
-  
+  console.log('i = ' + i);
+
   skx.getAccountValue(2018,1,i, (e,v) => $(o).val(v))
 });
 
