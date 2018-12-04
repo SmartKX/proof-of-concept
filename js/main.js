@@ -70,7 +70,7 @@ function maths() {
     function(a, b) {
       total += parseInt(b);
       console.log(total);
-      return 
+      return b
     }
   );
 
