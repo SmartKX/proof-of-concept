@@ -336,7 +336,6 @@
         </div>
       </div>
     </div>
-
     <script src="../js/vendor/modernizr-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -345,59 +344,5 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="../js/plugins.js"></script>
     <script src="../js/main.js"></script>
-    <script>
-      var rates = [
-        {lower: 0, upper: 1000000, rate: .01, amount: 0, result: 0},
-        {lower: 1000000.01, upper: 3000000, rate: .008, amount: 0, result: 0},
-        {lower: 3000000.01, upper: Infinity, rate: .006, amount: 0, result: 0}
-      ];
-
-      $('#go').click(maths);
-
-      function maths() {
-        let total = 0;
-        let totalBilled = 0;
-        // collect
-        $('input[type=text]').val(
-          function(a, b) {
-            total += parseInt(b.replace(/,/g, ''));
-            return b;
-          }
-        );
-
-        // gear on
-        $('#gear').show();
-
-        // compute
-
-        rates.forEach(function(rate) {
-          if (total > rate.lower) {
-            console.log(`In range! ${rate.lower} - ${rate.upper}`);
-            rate.amount = _.clamp(total, rate.lower, rate.upper);
-            rate.result = rate.amount * rate.rate;
-          }
-        });
-        
-        totalBilled = rates[0].result + rates[1].result + rates[2].result;
-
-        console.log(`Total - ${total.toLocaleString()}`);
-        console.log(`Total Billed ${totalBilled.toLocaleString()}`);
-
-        setTimeout(function() {
-          $('#total').text('$' + total.toLocaleString());
-          $('#totalBilled').text('$' + totalBilled.toLocaleString());
-          $('#rate0 td.amount').text('$' + rates[0].amount.toLocaleString());
-          $('#rate0 td.result').text('$' + rates[0].result.toLocaleString());
-          $('#rate1 td.amount').text('$' + rates[1].amount.toLocaleString());
-          $('#rate1 td.result').text('$' + rates[1].result.toLocaleString());
-          $('#rate2 td.amount').text('$' + rates[2].amount.toLocaleString());
-          $('#rate2 td.result').text('$' + rates[2].result.toLocaleString());
-
-          total = 0;
-          totalBilled = 0;
-          $('#gear').hide();
-        }, 5000);
-      }
-    </script>
   </body>
 </html>
