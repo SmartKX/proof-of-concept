@@ -7,104 +7,217 @@ window.addEventListener('load', async () => {
     } catch (error) {
       console.log('Connection Not Established');
     }
-	}
-
-	else if (window.web3) {
+	} else if (window.web3) {
     window.web3 = new Web3(web3.currentProvider);
     // Acccounts always exposed
     web3.eth.sendTransaction({/* ... */});
-	}
-	// Non-dapp browsers...
-	else {
+	} else {
     console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
 	}
 });
 
-var address  = '0xc8804a7ed8773a5390ddd00834c3c9ab1a7e67ad';
-var abi = [{"constant":true,"inputs":[],"name":"eMap","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"breaks","outputs":[{"name":"","type":"int64"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_year","type":"uint16"},{"name":"_quarter","type":"uint8"}],"name":"calculate","outputs":[],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"numAccounts","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_year","type":"uint16"},{"name":"_quarter","type":"uint8"},{"name":"_account","type":"uint8"}],"name":"getAccountValue","outputs":[{"name":"","type":"int64"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"keyOwner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getFeeSchedule","outputs":[{"name":"","type":"int64[]"},{"name":"","type":"int64[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_year","type":"uint16"},{"name":"_quarter","type":"uint8"},{"name":"_account","type":"uint8"},{"name":"_value","type":"int64"}],"name":"setAccountValue","outputs":[{"name":"","type":"int64"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"rates","outputs":[{"name":"","type":"int8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"keyManager","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_year","type":"uint16"},{"name":"_quarter","type":"uint8"}],"name":"getAccountValues","outputs":[{"name":"","type":"int64[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint16"},{"name":"","type":"uint8"},{"name":"","type":"uint8"}],"name":"accounts","outputs":[{"name":"","type":"int64"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_keyManager","type":"address"},{"name":"_numAccounts","type":"uint8"},{"name":"_eMap","type":"string"},{"name":"_breaks","type":"int64[]"},{"name":"_rates","type":"int8[]"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"","type":"int256"}],"name":"ReportAum","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"","type":"int64[]"}],"name":"ReportSplits","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"","type":"uint256"}],"name":"ReportFeeTotal","type":"event"}];
+Vue.filter('cap', (v) => v.toUpperCase() );
+Vue.filter('usd', (v) => numeral(v / 1000000).format('$0a') );
+Vue.filter('bps', (v) => numeral(v / 1000000).format('0.00%') );
+Vue.filter('ymd', (v) => moment(v, 'YYYYMMDD').format('YYYYMMMDD') );
 
-let contract = web3.eth.contract(abi);
-let skx = contract.at(address);
+Vue.component('contract', {
+  props: ['contract'],
+  template: `
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <div data-toggle="collapse" :data-target="'#contract' + contract.address" :aria-expanded="contract.active ? 'true' : 'false'" aria-controls="collapseOne">
+          <h3 class="">{{ contract.active ? 'Active' : 'Archived' }}</h3>
+          <small class="text-muted">{{ contract.start }} - {{ contract.end ? contract.end : 'Present' }}</small>
+        </div>
+      </div>
+      <div v-bind:id="'contract' + contract.address" class="collapse" :class="contract.active ? 'show' : ''" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4">
+              <p><small>
+                Executed: {{ contract.executed | ymd | cap}}<br>
+                Accounts: {{ contract.accounts.length }}<br>
+                <a v-bind:href="contract.pdfLink">Contract PDF</a><br>
+                <a v-bind:href="contract.auditLink">Contract Audit</a>
+              </small></p>
+              <p class="h6">2019</p>
+              <div class="btn-group btn-group-sm btn-group-toggle mb-3" data-toggle="buttons">
+                <label class="btn btn-outline-dark">
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked> Q1
+                </label>
+                <label class="btn btn-outline-dark">
+                  <input type="radio" name="options" id="option2" autocomplete="off" checked> Q2
+                </label>
+                <label class="btn btn-outline-dark">
+                  <input type="radio" name="options" id="option3" autocomplete="off"> Q3
+                </label>
+                <label class="btn btn-outline-dark">
+                  <input type="radio" name="options" id="option4" autocomplete="off"> Q4
+                </label>
+              </div>
+              <p class="h6">2018</p>
+              <div class="btn-group btn-group-sm btn-group-toggle mb-3" data-toggle="buttons">
+                <label class="btn btn-outline-dark disabled">
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked> Q1
+                </label>
+                <label class="btn btn-outline-dark">
+                  <input type="radio" name="options" id="option2" autocomplete="off" checked> Q2
+                </label>
+                <label class="btn btn-outline-dark">
+                  <input type="radio" name="options" id="option3" autocomplete="off"> Q3
+                </label>
+                <label class="btn btn-outline-dark">
+                  <input type="radio" name="options" id="option4" autocomplete="off"> Q4
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <h5>Schedule</h5>
+              <table class="table table-sm">
+                <tr>
+                  <th>Range</th>
+                  <th>Rate</th>
+                </tr>
+                <tr id="rate0" v-for="(split, index) in contract.splits">
+                  <td>{{ split | usd | cap }} - {{ contract.splits[index +1 ] | usd | cap }}</td>
+                  <td>{{ contract.bps[index] | bps }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `});
+Vue.component('household-header', {
+  props: ['household'],
+  template: `
+    <div class="row bg-light border-bottom">
+      <div class="col">
+        <h1>Household Info</h1>
+        <dl class="row">
+          <dt class="col-sm-2">Household Name</dt>
+          <dd class="col-sm-10">{{ household.name }}</small></dd>
+          <dt class="col-sm-2">Account Number</dt>
+          <dd class="col-sm-10">{{ household.accountNum }}</dd>
+          <dt class="col-sm-2">Manager</dt>
+          <dd class="col-sm-10">{{ household.manager }}</dd>
+        </dl>
+      </div>
+    </div>
+  `})
+Vue.component('navigation', {
+  props: ['households'],
+  template: `
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow sticky-top">
+      <a class="navbar-brand mb-0 h1" href="#">Smart Kx</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-$('.skx-account-value').each(function(i,o) {
-  console.log('i = ' + i);
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Support
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Documentation</a>
+              <a class="dropdown-item" href="#">Support Ticket</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select a Household
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#" v-for="household in households">{{household.name}}</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">New Household</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  `});
 
-  skx.getAccountValue(2018,4,i, (e,v) => $(o).val(v))
-});
-
-var selector = new Vue({
-  el: '#selector',
+var app = new Vue({
+  el: '#app',
   data: {
     households: [
       {
-        name: 'John Smith Family (...010)',
+        name: 'John Smith Family',
+        accountNum: 732612010,
+        manager: 'Money Manager Jason',
+        contracts: [{
+          active: true,
+          address: '0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D26D0',
+          executed: '20180118',
+          pdfLink: 'https://docusign.com/skx/xyz.pdf',
+          auditLink: 'https://etherscan.io/address/0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D26D0',
+          splits: [0,1000000000000,3000000000000,5000000000000],
+          bps: [10000, 8000, 6000, 4000],
+          start: 20182,
+          end: null,
+          accounts: ['B IRA', 'S IRA', 'B&S', 'B Taxable', 'S Taxable', 'Kid Account'],
+          data: {
+            20182: [250000000000, 10000000000, 500000000000, 1500000000000, 150000000000, 325000000000],
+            20183: [275000000000, 11500000000, 500000000000, 1600000000000, 165000000000, 335000000000]
+          }
+        },
+        {
+          active: false,
+          address: '0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D2XXX',
+          executed: '20160527',
+          pdfLink: 'https://docusign.com/skx/abc.pdf',
+          auditLink: 'https://etherscan.io/address/0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D2XXX',
+          splits: [0,1000000000000,3000000000000,5000000000000],
+          bps: [10000, 8000, 6000, 4000],
+          start: 20163,
+          end: 20181,
+          accounts: ['B IRA', 'S IRA', 'B&S', 'B Taxable', 'S Taxable'],
+          data: {
+            20182: [250000000000, 10000000000, 500000000000, 1500000000000, 150000000000],
+            20183: [275000000000, 11500000000, 500000000000, 1600000000000, 165000000000]
+          }
+        },
+        {
+          active: false,
+          address: '0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D2YYY',
+          executed: '20160527',
+          pdfLink: 'https://docusign.com/skx/abc.pdf',
+          auditLink: 'https://etherscan.io/address/0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D2YYY',
+          splits: [0,1000000000000,3000000000000,4000000000000],
+          bps: [10000, 8000, 6000, 4000],
+          start: 20163,
+          end: 20181,
+          accounts: ['B IRA', 'S IRA', 'B&S', 'B Taxable'],
+          data: {
+            20182: [250000000000, 10000000000, 500000000000, 1500000000000],
+            20183: [275000000000, 11500000000, 500000000000, 1600000000000]
+          }
+        }]
+      },
+      {
+        name: 'Mary Williams Family',
         contractHash: '0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D26D0'
       },
       {
-        name: 'Mary Williams Family (...736)',
+        name: 'Greg Andrews Family',
         contractHash: '0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D26D0'
-      },
-      {
-        name: 'Greg Andrews Family (...893)',
-        contractHash: '0xd1Df4eFc6b7d47D00E21566B668a9cbbBf5D26D0'
-      }      
+      }
     ]
   }
 });
-
-var rates = [
-  {lower: 0, upper: 1000000, rate: .01, amount: 0, result: 0},
-  {lower: 1000000.01, upper: 3000000, rate: .008, amount: 0, result: 0},
-  {lower: 3000000.01, upper: 5000000, rate: .006, amount: 0, result: 0},
-  {lower: 5000000.01, upper: Infinity, rate: .004, amount: 0, result: 0}
-];
-
-
-$('#calc').click(maths);
-
-function maths() {
-  let total = 0;
-  let totalBilled = 0;
-  // collect
-  $('input[type=text].skx-account-value').val(
-    function(a, b) {
-      total += parseInt(b);
-      console.log(total);
-      return b
-    }
-  );
-
-  console.log('----' + typeof total);
-
-  // gear on
-  $('#gear').show();
-
-  // compute
-  rates.forEach(function(rate) {
-    if (total > rate.lower) {
-      console.log(`In range! ${rate.lower} - ${rate.upper}`);
-      rate.amount = _.clamp(total, rate.lower, rate.upper);
-      rate.result = rate.amount * rate.rate;
-    }
-  });
-  
-  totalBilled = rates[0].result + rates[1].result + rates[2].result;
-
-  console.log(`Total - ${total.toLocaleString()}`);
-  console.log(`Total Billed ${totalBilled.toLocaleString()}`);
-
-  setTimeout(function() {
-    $('#total').text('$' + total.toLocaleString());
-    $('#totalBilled').text('$' + totalBilled.toLocaleString());
-    $('#rate0 td.amount').text('$' + rates[0].amount.toLocaleString());
-    $('#rate0 td.result').text('$' + rates[0].result.toLocaleString());
-    $('#rate1 td.amount').text('$' + rates[1].amount.toLocaleString());
-    $('#rate1 td.result').text('$' + rates[1].result.toLocaleString());
-    $('#rate2 td.amount').text('$' + rates[2].amount.toLocaleString());
-    $('#rate2 td.result').text('$' + rates[2].result.toLocaleString());
-
-    total = 0;
-    totalBilled = 0;
-    $('#gear').hide();
-  }, 5000);
-}
