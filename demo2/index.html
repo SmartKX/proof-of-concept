@@ -25,8 +25,8 @@
               <contract v-for="(contract, index) in households[0].contracts" v-bind:key="contract.address" :contract="contract"></contract>
             </div>
           </div>
-          <div class="col-7 offset-1">
-            <!-- <quarterdata></quarterdata> -->
+          <div class="col-8">
+            <quarter :quarter="households[0].contracts[0].quarters[0]" :contract="households[0].contracts[0]"></quarter>
           </div>
         </div>
       </div>

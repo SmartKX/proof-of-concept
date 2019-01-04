@@ -17,9 +17,11 @@ window.addEventListener('load', async () => {
 });
 
 Vue.filter('cap', (v) => v.toUpperCase() );
-Vue.filter('usd', (v) => numeral(v / 1000000).format('$0a') );
+Vue.filter('shortusd', (v) => numeral(v / 1000000).format('$0a') );
+Vue.filter('usd', (v) => numeral(v / 1000000).format('00') );
 Vue.filter('bps', (v) => numeral(v / 1000000).format('0.00%') );
 Vue.filter('ymd', (v) => moment(v, 'YYYYMMDD').format('YYYYMMMDD') );
+Vue.filter('y_q', (v) => String(v).substring(0, 4) + ' Q' + String(v).substring(4));
 
 Vue.component('contract', {
   props: ['contract'],
@@ -80,7 +82,7 @@ Vue.component('contract', {
                   <th>Rate</th>
                 </tr>
                 <tr id="rate0" v-for="(split, index) in contract.splits">
-                  <td>{{ split | usd | cap }} - {{ contract.splits[index +1 ] | usd | cap }}</td>
+                  <td>{{ split | usd | cap }} - {{ contract.splits[index +1 ] | shortusd | cap }}</td>
                   <td>{{ contract.bps[index] | bps }}</td>
                 </tr>
               </table>
@@ -106,7 +108,7 @@ Vue.component('household-header', {
         </dl>
       </div>
     </div>
-  `})
+  `});
 Vue.component('navigation', {
   props: ['households'],
   template: `
@@ -152,6 +154,34 @@ Vue.component('navigation', {
       </div>
     </nav>
   `});
+Vue.component('quarter', {
+  props: ['quarter', 'contract'],
+  template: `
+    <div class="quarter">
+      <h1>{{quarter.id | y_q}}</h1>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group" v-for="(split, index) in quarter.values">
+            <label :for="'account' + index">{{ contract.accounts[index]}}</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">$</div>
+              </div>
+              <input type="text" class="form-control" :id="'account' + index" aria-describedby="emailHelp" placeholder="Enter account ammount" :value="quarter.values[index] | usd">
+            </div>
+            <small id="emailHelp" class="form-text text-muted">Small note about something or other.</small>
+          </div>
+        </div>
+        <div class="col-8">
+          <canvas id="chart" width="400" height="400"></canvas>
+        </div>
+      </div>
+    </div>
+  `,
+  mounted: function() {
+    doChart(this.quarter.values, this.contract.accounts);
+  }
+});
 
 var app = new Vue({
   el: '#app',
@@ -172,10 +202,16 @@ var app = new Vue({
           start: 20182,
           end: null,
           accounts: ['B IRA', 'S IRA', 'B&S', 'B Taxable', 'S Taxable', 'Kid Account'],
-          data: {
-            20182: [250000000000, 10000000000, 500000000000, 1500000000000, 150000000000, 325000000000],
-            20183: [275000000000, 11500000000, 500000000000, 1600000000000, 165000000000, 335000000000]
-          }
+          quarters: [
+            {
+              id: 20182,
+              values: [250000000000, 10000000000, 500000000000, 1500000000000, 150000000000, 325000000000]
+            },
+            {
+              id: 20183,
+              values: [250000000000, 10000000000, 500000000000, 1500000000000, 150000000000, 325000000000]
+            }
+          ]
         },
         {
           active: false,
@@ -221,3 +257,35 @@ var app = new Vue({
     ]
   }
 });
+
+function doChart(accountValues, accountNames) {
+  //console.log(accountValues, accountValues)
+  var ctx = document.getElementById("chart");
+  var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: accountNames,
+      datasets: [{
+        label: 'Distribution of Funds',
+        data: accountValues,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+  });
+}
