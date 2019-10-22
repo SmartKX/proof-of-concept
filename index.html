@@ -2,37 +2,63 @@
 	<head>
 		<title>Smart Kx</title>
 		<link href="https://fonts.googleapis.com/css?family=Sintony" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha256-YLGeXaapI0/5IgZopewRJcFXomhRMlYYjugPLSyNjTY=" crossorigin="anonymous" />
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha256-fzFFyH01cBVPYzl16KT40wqjhgPtq6FFUB6ckN2+GGw=" crossorigin="anonymous"></script>
 		<style>
-			body { background: url('img/background.png') #fff; } 
-			.para { color: #666; font-size: 16px; text-align: left; padding-bottom: 2em; }
-			.fit { max-width: 560px; width: 80%; margin: auto; }
-			.contact { line-height: 1.5em; font-size: 22px; }
+			body { background: #f1f0ea; }
+			.navbar { background: #0c2b4b; }
+			#logo { height: 40px; }
+			#jumbotron { background: url('img/bg-landscape.jpg') 50% 30% no-repeat; background-size: cover; }
+			#contact { background: #0c2b4b; }
+			.img-link {height: 1em;}
 		</style>
 	</head>
-	<body style="text-align:center; padding-top:50px; font-size:1.75em; font-family: 'Sintony', sans-serif;">
-		<img src="img/logo-skx-kw.png" style="width:50%; max-width:400px;">
-		<p class="contact">
-			Lacey Shrum<br>
-			214-676-2184<br>
-			<a href="mailto:lacey@smartkx.io" style="color:#000; text-decoration:none;">lacey@smartkx.io</a>
-		</p>
-		<hr style="max-width: 400px">
+	<body>
+		<div class="container mb-5">
+			<nav class="navbar navbar-light rounded-bottom">
+				<a class="navbar-brand" href="#">
+					<img src="img/logo-skx-wk.png" id="logo" class="img-fluid" alt="">
+				</a>
+			</nav>
+			<div id="jumbotron" class="jumbotron mt-3 text-white">
+				<h1 class="display-4">To Err is Human.</h1>
+				<h2 class="display-6">Smart Kx offers fee accuracy assurance.</p>
+			</div>
+			<div class="row">
+				<div class="col-9">
+					<h2 class="mb-3">Smart Kx is the only client contract manager and billing solution designed for RIAs.</h2>
+					<p>This revolutionary technology provides an integrated solution for Registered Investment Advisors that eliminates disruptive fee monitoring, limited billing approaches, and regulatory risk.</p>
+					<p>Fee calculating is a costly, inefficient, and daunting process. Current billing solutions may generate impressive reports, but they do not provide fee assurance, and your revenue is still subject to error and costly scrutiny.</p>		
+					<p>The Smart Kx technology eliminates potential billing inconsistencies by providing a seamless fee calculation system based on the terms of the contract. With Smart Kx, the legal contract between the firm and client acts as a robust, dynamic, and autonomous calculator. Smart Kx ensures the contract and the fee are both exactly as agreed, thereby eliminating time-consuming manual calculation and review.</p>
+					<p>Revenue is no longer a report with Smart Kx. Your fees become part of a system that is programmable to any billing structure needed - simple or complex. The Smart Kx interface allows firms, clients, and examining regulators to view - in real-time - the contract, the fee calculated, and the custodial statement.</p>
+					<p>Thanks to Smart Kx, RIA revenues are protected, completely transparent, and proven on an immutable ledger.</p>
+					<p>Contact <a href="mailto:lacey@smartkx.io" style="text-decoration:none;">Lacey Shrum</a> for more information or to get started with Smart Kx.</p>
+				</div>
+				<div class="col-3">
+					<div id="contact" class="card rounded text-white mb-3">
+						<div class="card-body">
+							<h2 class="card-title">For More Information</h2>
+							<a href="mailto:lacey@smartkx.io" class="btn btn-light">Email Lacey Shrum</a>
+						</div>
+					</div>
+
+					<h6>Additional Reading</h6>
+					<p><a href="https://www.sec.gov/files/ocie-risk-alert-advisory-fee-expense-compliance.pdf" class="text-dark">SEC Risk Alert <img src="img/link.png" class="img-link mb-1 img-fluid d-inline-block" alt=""></a></p>
+				</div>
+			</div>
+		</div>
+
+
 		<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/wwpuRNuK0Ag" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" style="padding-bottom: 1.25em;" allowfullscreen></iframe>
 		<p class="para fit">Smart Kx is a contract management software built for RIAs streamlining the client contract, fee calculation and audit process.</p>
 		<p class="para fit">With the Smart Kx solution, the traditional legal contract between the client and the firm is both the contract and the fee calculator.  This ensures the fee is calculated exactly as the firm and the client have agreed.  An audit of the client contract, account statement and invoice is no longer required as the fee cannot differ from the contract terms.</p>
 		<p class="para fit">Additionally, the contract, fee and its calculation are stored on an immutable ledger, allowing the firm to prove with absolute certainty what amount was billed, on what date and the calculation used.  There is no change to the firm's legal contract or the client experience; both parties sign a traditional legal contract in hardcopy or electronic versions.  This solution also addresses and solves a majority of the recent <a class="text-light" href="https://www.sec.gov/files/ocie-risk-alert-advisory-fee-expense-compliance.pdf">SEC Risk Alert.</a></p> -->
 
-		<h2>To Err is Human.</h2>
-		<h4>Smart Kx offers fee accuracy assurance.</h4>
 				
-		<h6 class="fit"><strong>Smart Kx is the only client contract manager and billing solution designed for RIAs.</strong></h6>
+		
 
-		<p class="para fit">This revolutionary technology provides an integrated solution for Registered Investment Advisors that eliminates disruptive fee monitoring, limited billing approaches, and regulatory risk.</p>
-		<p class="para fit">Fee calculating is a costly, inefficient, and daunting process. Current billing solutions may generate impressive reports, but they do not provide fee assurance, and your revenue is still subject to error and costly scrutiny.</p>		
-		<p class="para fit">The Smart Kx technology eliminates potential billing inconsistencies by providing a seamless fee calculation system based on the terms of the contract. With Smart Kx, the legal contract between the firm and client acts as a robust, dynamic, and autonomous calculator. Smart Kx ensures the contract and the fee are both exactly as agreed, thereby eliminating time-consuming manual calculation and review.</p>
-		<p class="para fit">Revenue is no longer a report with Smart Kx. Your fees become part of a system that is programmable to any billing structure needed - simple or complex. The Smart Kx interface allows firms, clients, and examining regulators to view - in real-time - the contract, the fee calculated, and the custodial statement.</p>
-		<p class="para fit">Thanks to Smart Kx, RIA revenues are protected, completely transparent, and proven on an immutable ledger.</p>
-		<p class="para fit">Contact <a href="mailto:lacey@smartkx.io" style="color:#000; text-decoration:none;">Lacey Shrum</a> for more information or to get started with Smart Kx.</p>
+
 
 
 
